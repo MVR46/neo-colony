@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Neo-Colony
+
+A futuristic "AI Neo-Colony" simulation game where you are the AI Architect managing a colony on a terraformed moon. Build infrastructure, deploy drones, and manage your colony's resources.
+
+## Features
+
+- Generate futuristic buildings for your colony
+- Deploy drones (villagers) to interact with your colony
+- Real-time Credits and Emotional Quotient (EQ) management
+- AI-powered status reports and chat with colony inhabitants
+- Sleek neon-themed UI with hex grid gameplay
+
+## Technologies Used
+
+- **Frontend**: React + Phaser 3 (TypeScript) for the colony simulation
+- **Styling**: Tailwind CSS + Preline UI for a sleek futuristic interface
+- **AI Layer**: Next.js API routes calling OpenAI for generation and chat
+- **State Management**: React hooks for clean state management
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Node.js (v16 or newer)
+- NPM or Yarn
+- OpenAI API key
+
+### Installation
+
+1. Clone the repository
+```
+git clone https://github.com/yourusername/neo-colony.git
+cd neo-colony
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies
+```
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Create a `.env.local` file in the project root with your OpenAI API key:
+```
+# Required: Your OpenAI API Key
+OPENAI_API_KEY=your_openai_api_key_here
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Optional: Model to use (defaults to gpt-4 in the code)
+# OPENAI_MODEL=gpt-3.5-turbo
+```
 
-## Learn More
+### Running the Development Server
 
-To learn more about Next.js, take a look at the following resources:
+```
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The application will be available at [http://localhost:3000](http://localhost:3000).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## How to Play
 
-## Deploy on Vercel
+1. **Name Your Colony**: Start by giving your settlement a name
+2. **Generate Infrastructure**: Click the "Generate Infrastructure" button to create building options
+3. **Place Buildings**: Select buildings and place them on the hex grid
+4. **Deploy Drones**: Add inhabitants to your colony
+5. **Manage Resources**: Watch your Credits and EQ levels
+6. **Chat with Drones**: Interact with your colony's inhabitants
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Game Mechanics
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Credits**: Currency for building infrastructure. Different buildings have different costs.
+- **EQ (Emotional Quotient)**: Represents the emotional wellbeing of your colony. 
+- **Buildings**: Buildings can generate or consume Credits and affect the EQ of nearby drones.
+- **Drones**: Colony inhabitants with individual personalities and roles.
+
+## License
+
+MIT
+
+## Acknowledgments
+
+- Phaser.js for the game engine
+- OpenAI for the AI capabilities
+- Next.js and React for the framework
+- Tailwind and Preline for UI components
