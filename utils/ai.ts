@@ -14,6 +14,46 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+export async function generateVillager(colonyName: string, buildings: BuildingSpec[]): Promise<any> {
+  const prompt = `Generate a new villager for "${colonyName}".
+    Colony has these buildings: ${JSON.stringify(buildings)}
+    
+    Create a unique character with:
+    - A suitable name
+    - A specialized role/job in the colony
+    - 3-5 personality traits
+    - An EQ (emotional quotient) value between 40-90
+    - A brief self-introduction message
+    
+    Format as JSON with name, role, traits (array), eq (number), and introduction (string).`;
+
+  const response = await openai.chat.completions.create({
+    model: "gpt-4",
+    messages: [
+      { role: "system", content: "You are an AI designing realistic inhabitants for a futuristic colony. Create diverse, interesting characters with consistent personalities." },
+      { role: "user", content: prompt }
+    ],
+    response_format: { type: "json_object" }
+  });
+
+  try {
+    const content = response.choices[0].message.content;
+    if (!content) throw new Error("No content in response");
+    
+    return JSON.parse(content);
+  } catch (error) {
+    console.error("Failed to parse generated villager:", error);
+    // Return default villager if API fails
+    return {
+      name: "Colonist-" + Math.floor(Math.random() * 1000),
+      role: "Maintenance Worker",
+      traits: ["Resourceful", "Adaptable"],
+      eq: 65,
+      introduction: "Hello, I'm a new arrival to the colony. Looking forward to helping out!"
+    };
+  }
+}
+
 export async function generateBuildings(colonyName: string, theme: string, currentBuildings: BuildingSpec[]): Promise<BuildingSpec[]> {
   const prompt = `Generate 3 futuristic Neo-Colony buildings for "${colonyName}".
     Theme: ${theme}
